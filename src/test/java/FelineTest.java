@@ -1,9 +1,11 @@
 import com.example.Animal;
 import com.example.Feline;
+import com.example.Predator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -32,9 +34,9 @@ public class FelineTest {
 
     @Test
     public void eatMeatFeline() throws Exception {
+        Feline feline = new Feline();
         Mockito.when(animalMock.getFood("Хищник"))
                 .thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        Feline feline = new Feline();
         List<String> actualResult = feline.eatMeat();
 
         List<String> expectedResult = List.of("Животные", "Птицы", "Рыба");
