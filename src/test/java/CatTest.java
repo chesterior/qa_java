@@ -1,20 +1,25 @@
 import com.example.Cat;
 import com.example.Feline;
 import com.example.Predator;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(MockitoJUnitRunner.class)
 public class CatTest {
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
     @Mock
     Predator predatorMock;
+    @Mock
     Feline felineMock;
 
     @Test
@@ -40,7 +45,8 @@ public class CatTest {
     @Test
     public void getFoodCat() throws Exception {
         Cat cat = new Cat(new Feline());
-        Mockito.when(predatorMock.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Mockito.when(predatorMock.eatMeat()).
+                thenReturn(List.of("Животные", "Птицы", "Рыба"));
 
         List<String> expectedGetFoodCat = List.of("Животные", "Птицы", "Рыба");
 
