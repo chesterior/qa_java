@@ -1,17 +1,30 @@
 import com.example.Cat;
 import com.example.Feline;
-import com.example.Predator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CatTest {
+    @Mock
+    Feline felineMock;
+
+    @Test
+    public void catTest() {
+    }
+
+    @Test
+    public void testCatConstructor() {
+        Cat cat = new Cat(felineMock);
+        assertEquals(felineMock, cat.predator);
+    }
+
     @Test
     public void getSoundCat() {
         Cat cat = new Cat(new Feline());
@@ -22,13 +35,11 @@ public class CatTest {
         assertEquals(expectedGetSoundCat, actualGetSoundCat);
     }
 
-    @Mock
-    Predator predator;
-
     @Test
     public void getFoodCat() throws Exception {
-        Cat cat = new Cat(new Feline());
-        Mockito.when(predator.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Cat cat = new Cat(felineMock);
+        Mockito.when(felineMock.eatMeat()).
+                thenReturn(List.of("Животные", "Птицы", "Рыба"));
 
         List<String> expectedGetFoodCat = List.of("Животные", "Птицы", "Рыба");
 
